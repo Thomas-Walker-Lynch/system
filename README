@@ -1,2 +1,12 @@
 
-Local customization stuff for new installs.
+Some local customization stuff I add to new installs.
+
+*** home 
+simple C program to get the home directory from etc/password.  Used to protect scripts from the HOME envrionment variable.  
+Set HOME=`/usr/local/bin/home` at the top of the script.
+
+*** Z
+ISO8601 standard time in the UTC time zone.  Used for time stamps.  Good to include in prompts when the transcript is to be saved.
+
+*** Encrypt/Decrypt
+A couple of Nautilus scripts in Pythom for encrypting and decrypting files.  These could be improved to work on directories and large files.
