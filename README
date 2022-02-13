@@ -2,10 +2,11 @@
 Some local customization stuff I add to new installs.
 
 *** home 
-simple C program to get the home directory from etc/password.  Used to protect scripts from the HOME envrionment variable being 
+C program to get the home directory from etc/password.  Used to protect scripts from the HOME envrionment variable being 
 changed by a caller.  
 
-
+An admin should change its ownership to root and install it in `/usr/local/bin`.  Scripts should refer to it through
+is full path, so that another home script does not get picked up.
 
 Put this at the top of your home protected script:
 
@@ -19,36 +20,8 @@ It is also called ‘Zulu Time’ because ‘Zulu’ is the phonetic for the let
 Scripts in `project-share` make use of this.  
 
 An admin should change its ownership to root and install it in `/usr/local/bin`.  Scripts should refer to it through
-is full path, so that another Z script does not get picked up. 
+its full path, so that another Z script does not get picked up. 
 
-
-
-## About the `home` script
-
-
-
-`home` is binary executable for getting the user's home directory from `/etc/passwd`.
-
-This is used for security reasons in bash scripts, because `$HOME` is inherited 
-
-from the environment and thus might not be the home directory.
-
-
-
-The source and makefile for building home are in `project-share/src/home`.  However an admin needs
-
-to install this program.  If the program is owned by the same user it is used by, then it
-
-might be overwritten to give different answers.
-
-
-
-To use `home` place it at the top of your script and overwrite the `HOME` variable
-
-from the environment. Something like: `HOME=$(/usr/local/bin/home)`.
-
-
-ISO8601 standard time in the UTC time zone.  Used for time stamps.  Good to include in prompts when the transcript is to be saved.
 
 *** Encrypt/Decrypt
 A couple of Nautilus scripts in Pythom for encrypting and decrypting files.  These could be improved to work on directories and large files.
