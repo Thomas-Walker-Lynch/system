@@ -42,18 +42,3 @@ export PS2='>>'
 export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 export EDITOR=emacs
 
-alias pcd_ac="~/bin/discourse_application_client/start"
-alias pcd_as="~/bin/discourse_application_server/start"
-alias pcd_rr="~/bin/RT-RPC/start"
-alias pcd_cg="~/bin/customer_gateway/start"
-
-alias pcd_t="~/projects/tranche_dev/project_share/start"
-alias pcd_ws4="~/projects/ws4_dev/project_share/start"
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/morpheus/gcloud/google-cloud-sdk/path.bash.inc' ]; then . '/home/morpheus/gcloud/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/morpheus/gcloud/google-cloud-sdk/completion.bash.inc' ]; then . '/home/morpheus/gcloud/google-cloud-sdk/completion.bash.inc'; fi
-
