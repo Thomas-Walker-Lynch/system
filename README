@@ -2,10 +2,52 @@
 Some local customization stuff I add to new installs.
 
 *** home 
-simple C program to get the home directory from etc/password.  Used to protect scripts from the HOME envrionment variable.  
-Set HOME=`/usr/local/bin/home` at the top of the script.
+simple C program to get the home directory from etc/password.  Used to protect scripts from the HOME envrionment variable being 
+changed by a caller.  
+
+
+
+Put this at the top of your home protected script:
+
+Set HOME=`/usr/local/bin/home`
 
 *** Z
+
+‘Z’ is the conventional abreviation for UTC time, used by ISO 8601, and in radio communications. (Z comes from 'zero meridian'.  
+It is also called ‘Zulu Time’ because ‘Zulu’ is the phonetic for the letter ‘Z’.)
+
+Scripts in `project-share` make use of this.  
+
+An admin should change its ownership to root and install it in `/usr/local/bin`.  Scripts should refer to it through
+is full path, so that another Z script does not get picked up. 
+
+
+
+## About the `home` script
+
+
+
+`home` is binary executable for getting the user's home directory from `/etc/passwd`.
+
+This is used for security reasons in bash scripts, because `$HOME` is inherited 
+
+from the environment and thus might not be the home directory.
+
+
+
+The source and makefile for building home are in `project-share/src/home`.  However an admin needs
+
+to install this program.  If the program is owned by the same user it is used by, then it
+
+might be overwritten to give different answers.
+
+
+
+To use `home` place it at the top of your script and overwrite the `HOME` variable
+
+from the environment. Something like: `HOME=$(/usr/local/bin/home)`.
+
+
 ISO8601 standard time in the UTC time zone.  Used for time stamps.  Good to include in prompts when the transcript is to be saved.
 
 *** Encrypt/Decrypt
