@@ -1,27 +1,37 @@
 
-Some local customization stuff I add to new installs.
+## Install
+
+run the makefile in src/home, mv the resulting executables to /usr/local/bin
+
+> cp Z /usr/local/bin
+> cd src/home
+> make
+> chmod go-w,go+rx home user
+> mv home user /usr/local/bin
+> cd /usr/local/bin
+> sudo chown root:root Z user home
+
+The last step is important so that the scripts do not get modified.
+
 
 *** home 
-C program to get the home directory from etc/password.  Used to protect scripts from the HOME envrionment variable being 
-changed by a caller.  
 
-An admin should change its ownership to root and install it in `/usr/local/bin`.  Scripts should refer to it through
-is full path, so that another home script does not get picked up.
+home directory from /etc/passwd
 
 Put this at the top of your home protected script:
 
 Set HOME=`/usr/local/bin/home`
 
+*** user
+
+username from /etc/passwd
+
+
 *** Z
+creates timestamps
 
 ‘Z’ is the conventional abreviation for UTC time, used by ISO 8601, and in radio communications. (Z comes from 'zero meridian'.  
 It is also called ‘Zulu Time’ because ‘Zulu’ is the phonetic for the letter ‘Z’.)
-
-Scripts in `project-share` make use of this.  
-
-An admin should change its ownership to root and install it in `/usr/local/bin`.  Scripts should refer to it through
-its full path, so that another Z script does not get picked up. 
-
 
 *** Encrypt/Decrypt
 A couple of Nautilus scripts in Pythom for encrypting and decrypting files.  These could be improved to work on directories and large files.
