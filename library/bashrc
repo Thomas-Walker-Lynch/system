@@ -6,7 +6,8 @@ export HOME=$(/usr/local/bin/home)
 export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 export EDITOR=emacs
 
-export PS1='\n$(/usr/local/bin/Z)\n\u@\h§\w§\n> '
+# user $PWD instead of \w or it will prefix ~ which confuses dirtrack when the user is changed using su
+export PS1='\n$(/usr/local/bin/Z)\n\u@\h§$PWD§\n> '
 export PS2='>>'
 
 # Make jupyterlab happy
@@ -28,6 +29,7 @@ fi
 
 #eval $(ssh-agent)
 #ssh-add ~/.ssh/key
+#export NO_AT_BRIDGE=1
 
 if [ -n "$INSIDE_EMACS" ]; then 
   echo Hello Emacs
