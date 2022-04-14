@@ -29,13 +29,22 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 143 :width normal))))
+ '(default ((t (:family "Noto Sans Mono CJK JP" :foundry "GOOG" :slant normal :weight normal :height 98 :width normal))))
  '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 2.0)))))
 
   ;; (use-package ace-window
   ;;     :init
   ;;     (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   ;;     (setq aw-background nil))
+
+;;--------------------------------------------------------------------------------
+;; set the title at the top of the frame
+;;
+  (defun frame-title (s)
+    "sets the frame title"
+    (interactive "stitle: ")
+    (setq frame-title-format s)
+    )
 
 ;;--------------------------------------------------------------------------------
 ;; neotree
@@ -86,17 +95,27 @@
 
   (defun shell~       () (interactive) (shell-make "~" "shell~"))
   (defun shell-root   () (interactive) (shell-make "/sudo::/root" "shell-root"))
-  (defun shell-beeast () (interactive) (shell-make "/ssh:thomas@beast.com:~" "shell-beast"))
+  (defun shell-rt     () (interactive) (shell-make "/ssh:thomas_lynch@reasoningtechnology.com:~" "shell-rt"))
+  ;(defun shell-rt-root() (interactive) (shell-make "/ssh:thomas_lynch@reasoningtechnology.com|sudo:reasoningtechnology.com:" "shell-rt-root"))
+  (defun shell-rt-root() (interactive) (shell-make "/ssh:root@reasoningtechnology.com:~" "shell-rt-root"))
 
-  ;; Just do c-x c-f on "/ssh:thomas_lynch@reasoningtechnology.com:", or any other file.
-  ;; Any shell opened from the direct view will open on the same machine with the pwd the same directory.
+  (defun shell-lfs    () (interactive) (shell-make "/ssh:lfs@192.168.122.115:~" "shell-LFS"))
+  (defun shell-LFS    () (interactive) (shell-make "/ssh:lfs@192.168.122.115:~" "shell-LFS"))
+
+  (defun shell-Shihju () (interactive) (shell-make "/sudo:Shihju@localhost:/home/Shihju" "shell-Shihju"))
+  (defun shell-Wendell () (interactive) (shell-make "/ssh:Morpheus@Wendell:~" "shell-Wendell"))
+  (defun shell-Wendell-root () (interactive) (shell-make "/ssh:Morpheus@Wendell|sudo:Wendell:" "shell-Wendell-root"))
+  (defun shell-Wendell-Shihju () (interactive) (shell-make "/ssh:Morpheus@Wendell|sudo:Shihju@Wendell:" "shell-Wendell-Shihju"))
+
+
   (defun dired-rt ()
     (interactive)
     (dired "/ssh:thomas_lynch@reasoningtechnology.com:")
     )
+
   (defun dired-rt-root ()
     (interactive)
-    (dired "/ssh:thomas@beast.com|sudo:beast.com:")
+    (dired "/ssh:thomas_lynch@reasoningtechnology.com|sudo:reasoningtechnology.com:")
     )
 
 ;;--------------------------------------------------------------------------------
@@ -110,6 +129,7 @@
     (interactive)
     (set-window-dedicated-p (get-buffer-window (current-buffer)) nil)
     )
+
 
 ;;--------------------------------------------------------------------------------
 ;; json
@@ -355,5 +375,40 @@
     ;; (define-key map (kbd "O") 'direx:do-chown)
     ;; (define-key map (kbd "T") 'direx:do-touch)
 
+
+;;----------
+
+;(add-to-list 'tramp-connection-properties
+;             (list (regexp-quote "/ssh:thomas_lynch@reasoningtechnology.com:")
+;               "remote-shell" "/usr/bin/bash"))
+;
+;(customize-set-variable 'tramp-encoding-shell "/usr/bin/bash")
+
+(connection-local-set-profile-variables
+  'remote-bash
+  '((explicit-shell-file-name . "/bin/bash")
+     (explicit-bash-args . ("-i"))))
+
+;(add-to-list 'tramp-connection-properties
+;             (list (regexp-quote "/ssh:thomas_lynch@reasoningtechnology.com:")
+;               "remote-shell" "/usr/bin/bash"))
+;
+;(customize-set-variable 'tramp-encoding-shell "/usr/bin/bash")
+
+;; (connection-local-set-profile-variables
+;;   'remote-bash
+;;   '((explicit-shell-file-name . "/bin/bash")
+;;     (explicit-bash-args . ("-i"))))
+
+;; (connection-local-set-profiles
+;;   '(:application tramp :protocol "ssh" :machine "localhost")
+;;   'remote-bash)
+
+;; (connection-local-set-profiles
+;;   '(:application tramp :protocol "ssh" :machine "reasoningtechnology.com")
+;;   'remote-bash)
+
+;;(add-to-list 'tramp-connection-properties
+;;             (list nil "remote-shell" "/bin/bash"))
 
 (setq inhibit-startup-screen t)
