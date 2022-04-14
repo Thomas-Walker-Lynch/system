@@ -15,7 +15,7 @@ export PS2='>>'
   # export PATH=~/bin:~/projects/share:"$PATH"
 
 if [[ $HOME == "/home/lfs" ]]; then
-  export PATH=~/repo/LFS/executable:~/repo/resources/executable:"$PATH"
+  export PATH=~/repo/LFS/executable:~/repo/resource/executable:"$PATH"
 fi
 
 if [[ $HOME == "/home/Thomas/admin_root" ]]; then
@@ -23,7 +23,7 @@ if [[ $HOME == "/home/Thomas/admin_root" ]]; then
 fi
 
 if [[ $HOME == "/home/Thomas/repo_root" ]]; then
-  export PATH=~/repo/resources/executable:"$PATH"
+  export PATH=~/repo/resource/executable:"$PATH"
 fi
 
 #eval $(ssh-agent)
