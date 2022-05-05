@@ -7,7 +7,11 @@ export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 export EDITOR=emacs
 
 # user $PWD instead of \w or it will prefix ~ which confuses dirtrack when the user is changed using su
-export PS1='\n$(/usr/local/bin/Z)\n\u@\h§$PWD§\n> '
+if [[ -z "$PROJECT" ]]; then
+  export PS1='\n$(/usr/local/bin/Z)\n\u@\h§$PWD§\n> '
+else
+  export PS1='\n$(/usr/local/bin/Z)[$PROJECT]\n\u@\h§$PWD§\n> '
+fi
 export PS2='>>'
 
 # Make jupyterlab happy
