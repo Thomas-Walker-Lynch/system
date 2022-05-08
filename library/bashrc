@@ -1,5 +1,6 @@
 # note ssh will fail if bashrc writes to stdout
 
+export TZ=UTC
 export TIME_STYLE=long-iso
 umask 0007
 export HOME=$(/usr/local/bin/home)
