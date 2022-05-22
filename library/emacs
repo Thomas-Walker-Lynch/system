@@ -99,8 +99,8 @@
   ;(defun shell-rt-root() (interactive) (shell-make "/ssh:thomas_lynch@reasoningtechnology.com|sudo:reasoningtechnology.com:" "shell-rt-root"))
   (defun shell-rt-root() (interactive) (shell-make "/ssh:root@reasoningtechnology.com:~" "shell-rt-root"))
 
-  (defun shell-lfs    () (interactive) (shell-make "/ssh:lfs@192.168.122.115:~" "shell-LFS"))
-  (defun shell-LFS    () (interactive) (shell-make "/ssh:lfs@192.168.122.115:~" "shell-LFS"))
+  (defun shell-LFS      () (interactive) (shell-make "/ssh:lfs@192.168.122.115:~" "shell-LFS"))
+  (defun shell-LFS-root () (interactive) (shell-make "/ssh:root@192.168.122.115:~" "shell-LFS-root"))
 
   (defun shell-Shihju () (interactive) (shell-make "/sudo:Shihju@localhost:/home/Shihju" "shell-Shihju"))
   (defun shell-Wendell () (interactive) (shell-make "/ssh:Morpheus@Wendell:~" "shell-Wendell"))

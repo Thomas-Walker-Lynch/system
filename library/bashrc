@@ -4,8 +4,9 @@ export TZ=UTC
 export TIME_STYLE=long-iso
 umask 0007
 export HOME=$(/usr/local/bin/home)
-export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 export EDITOR=emacs
+alias emacs="emacs --title='$(/usr/local/bin/user-subu $(/user/local/bin/user))'"
+export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 
 # user $PWD instead of \w or it will prefix ~ which confuses dirtrack when the user is changed using su
 if [[ -z "$PROJECT" ]]; then
@@ -15,21 +16,31 @@ else
 fi
 export PS2='>>'
 
+
+
 # Make jupyterlab happy
 #
 #  export PATH=~/bin:~/.local/bin:"$PATH"
   # export PATH=~/bin:~/projects/share:"$PATH"
 
+if [[ $HOME == "/home/Thomas/admin" ]]; then
+  export PATH=~/user/executable:/home/Thomas/repo/user/subu/executable:"$PATH"
+  # No sound in subu shells without this:
+  # Seems it belongs somewhere other than .bashrc, but it does work here
+  # /etc/pulse/default.pa did not work.
+  pactl load-module module-native-protocol-tcp
+fi
+if [[ $HOME != "/home/Thomas/admin" ]]; then
+   # suppresses the no at bridge error .. no one seems to know why ...
+  export NO_AT_BRIDGE=1
+fi
+
 if [[ $HOME == "/home/lfs" ]]; then
-  export PATH=~/repo/LFS/executable:~/repo/resource/executable:"$PATH"
+  export PATH=~/user/LFS/executable:~/user/resource/executable:"$PATH"
 fi
 
-if [[ $HOME == "/home/Thomas/admin_root" ]]; then
-  export PATH=~/admin/executable:/home/Thomas/repo_root/repo/subu/executable:"$PATH"
-fi
-
-if [[ $HOME == "/home/Thomas/repo_root" ]]; then
-  export PATH=~/repo/resource/executable:"$PATH"
+if [[ $HOME == "/home/Thomas/repo" ]]; then
+  export PATH=~/user/resource/executable:"$PATH"
 fi
 
 #eval $(ssh-agent)
