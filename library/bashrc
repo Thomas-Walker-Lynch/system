@@ -37,7 +37,7 @@ if [[ $HOME != "/home/Thomas/admin" ]]; then
 fi
 
 if [[ $HOME == "/home/lfs" ]]; then
-  export REPO_HOME=/home/LFS/user/repo
+  export REPO_HOME=/home/lfs/user/repo
   export PATH=~"$REPO_HOME"/LFS/executable:"$REPO_HOME"/resource/executable:"$PATH"
 fi
 
