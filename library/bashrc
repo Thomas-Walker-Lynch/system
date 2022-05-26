@@ -5,7 +5,7 @@ export TIME_STYLE=long-iso
 umask 0007
 export HOME=$(/usr/local/bin/home)
 export EDITOR=emacs
-alias emacs="emacs --title='$(/usr/local/bin/user-subu $(/user/local/bin/user))'"
+alias emacs="emacs --title='$(/usr/local/bin/user-subu $(/usr/local/bin/user))'"
 export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 
 # user $PWD instead of \w or it will prefix ~ which confuses dirtrack when the user is changed using su
