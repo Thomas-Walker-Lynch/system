@@ -24,8 +24,9 @@ export PS2='>>'
   # export PATH=~/bin:~/projects/share:"$PATH"
 
 if [[ $HOME == "/home/Thomas/admin" ]]; then
-  export PATH=~/user/executable:/home/Thomas/repo/user/subu/executable:"$PATH"
-  # No sound in subu shells without this:
+  export REPO_HOME=/home/Thomas/repo/user
+  export PATH=~/user/executable:"$REPO_HOME"/subu/executable:"$PATH"
+   # No sound in subu shells without this:
   # Seems it belongs somewhere other than .bashrc, but it does work here
   # /etc/pulse/default.pa did not work.
   pactl load-module module-native-protocol-tcp
@@ -36,11 +37,13 @@ if [[ $HOME != "/home/Thomas/admin" ]]; then
 fi
 
 if [[ $HOME == "/home/lfs" ]]; then
-  export PATH=~/user/LFS/executable:~/user/resource/executable:"$PATH"
+  export REPO_HOME=/home/LFS/user/repo
+  export PATH=~"$REPO_HOME"/LFS/executable:"$REPO_HOME"/resource/executable:"$PATH"
 fi
 
 if [[ $HOME == "/home/Thomas/repo" ]]; then
-  export PATH=~/user/resource/executable:"$PATH"
+  export REPO_HOME="$HOME"/user
+  export PATH="$REPO_HOME"/resource/executable:"$PATH"
 fi
 
 #eval $(ssh-agent)
