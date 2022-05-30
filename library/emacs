@@ -184,6 +184,11 @@
   ; in customer variables '(c-offsets-alist (quote ((label . 2))))
 
 ;;--------------------------------------------------------------------------------
+;; shell scripting
+;;
+  (setq sh-basic-offset 2)
+
+;;--------------------------------------------------------------------------------
 ;; extended character set for programming examples in the TTCA book
 ;;
 ;; preferable to have keys for the characters, but the keyboard is already overloaded ..
