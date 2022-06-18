@@ -7,16 +7,14 @@ export HOME=$(/usr/local/bin/home)
 export EDITOR=emacs
 alias emacs="emacs --title='$(/usr/local/bin/user-subu $(/usr/local/bin/user))'"
 export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
+alias pstree="pstree -lp"
 
-# user $PWD instead of \w or it will prefix ~ which confuses dirtrack when the user is changed using su
-if [[ -z "$PROJECT" ]]; then
-  export PS1='\n$(/usr/local/bin/Z)\n\u@\h§$PWD§\n> '
-else
-  export PS1='\n$(/usr/local/bin/Z)[$PROJECT]\n\u@\h§$PWD§\n> '
-fi
-export PS2='>>'
-
-
+# without -i bash clear PS1, just because
+# user $(pwd) instead of \w or it will prefix ~ which confuses dirtrack when the user is changed using su
+export PPS1='\n$(/usr/local/bin/Z)[$PROJECT]\n\u@\h§$(pwd)§\n> '
+export PPS2='>> '
+export PS1="$PPS1"
+export PS2="$PPS2"
 
 # Make jupyterlab happy
 #
@@ -25,7 +23,7 @@ export PS2='>>'
 
 if [[ $HOME == "/home/Thomas/admin" ]]; then
   export REPO_HOME=/home/Thomas/repo/user
-  export PATH=~/user/executable:"$REPO_HOME"/subu/executable:"$PATH"
+  export PATH="~/user/executable:$REPO_HOME/subu/executable:$PATH"
    # No sound in subu shells without this:
   # Seems it belongs somewhere other than .bashrc, but it does work here
   # /etc/pulse/default.pa did not work.
@@ -37,13 +35,13 @@ if [[ $HOME != "/home/Thomas/admin" ]]; then
 fi
 
 if [[ $HOME == "/home/lfs" ]]; then
-  export REPO_HOME=/home/lfs/user/repo
-  export PATH="$REPO_HOME"/LFS/executable/LFS:"$REPO_HOME"/resource/executable:"$PATH"
+  export REPO_HOME="/home/lfs/user/repo"
+  export PATH="$REPO_HOME/resource/user/executable:$PATH"
 fi
 
 if [[ $HOME == "/home/Thomas/repo" ]]; then
-  export REPO_HOME="$HOME"/user
-  export PATH="$REPO_HOME"/resource/executable:"$PATH"
+  export REPO_HOME="$HOME/user"
+  export PATH="$REPO_HOME/resource/user/executable: $PATH"
 fi
 
 #eval $(ssh-agent)
