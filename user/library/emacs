@@ -283,7 +283,10 @@
             (lambda ()
               (message default-directory)))
 
-  (setq dirtrack-list '("§\\(.*\\)§\n[>#] " 1))
+;; this one keeps getting lost
+;;  (setq dirtrack-list '("§\\(.*\\)§\n[>#] " 1))
+;; I though it had to match to the end of the prompt, but apparently it scans back, so simpler is better:
+    (setq dirtrack-list '("§\\([^§]*\\)§" 1))
 
 ;;--------------------------------------------------------------------------------
 ;; emacs behavior
