@@ -22,10 +22,11 @@ export PS2="$PPS2"
   # export PATH=~/bin:~/projects/share:"$PATH"
 
 if [[ $HOME == "/home/Thomas/admin" ]]; then
-  export REPO_HOME=/home/Thomas/repo/user
+  export REPO_HOME="/home/Thomas/repo/user"
+  # need to change this to call initialize
   export PATH="~/user/executable:$REPO_HOME/subu/executable:$PATH"
-   # No sound in subu shells without this:
-  # Seems it belongs somewhere other than .bashrc, but it does work here
+
+  # No sound in subu shells without this. Seems it belongs somewhere other than .bashrc, but it does work here.
   # /etc/pulse/default.pa did not work.
   pactl load-module module-native-protocol-tcp
 fi
@@ -36,17 +37,13 @@ fi
 
 if [[ $HOME == "/home/lfs" ]]; then
   export REPO_HOME="/home/lfs/user/repo"
-  export PATH="$REPO_HOME/resource/user/executable:$PATH"
+  source "$REPO_HOME/resource/initialize"
 fi
 
 if [[ $HOME == "/home/Thomas/repo" ]]; then
   export REPO_HOME="$HOME/user"
-  export PATH="$REPO_HOME/resource/user/executable: $PATH"
+  source "$REPO_HOME/resource/initialize"
 fi
-
-#eval $(ssh-agent)
-#ssh-add ~/.ssh/key
-#export NO_AT_BRIDGE=1
 
 if [ -n "$INSIDE_EMACS" ]; then 
   echo Hello Emacs
