@@ -306,7 +306,7 @@
   ;;
     (set-default 'truncate-lines t)
     (setq truncate-partial-width-windows nil)
-    (setq-default fill-column 120)
+    (setq-default fill-column 80)
     (setq fill-column 120)
 
   ;; recover some window real estate - note also F11 to rid of the top window splash bar

@@ -1,15 +1,20 @@
 # note ssh will fail if bashrc writes to stdout
 
+# it is nearly impossible to get Linux to use ISO8601
 export TZ=UTC
 export TIME_STYLE=long-iso
+export LC_ALL=en_DK.UTF-8
+
 umask 0007
 export HOME=$(/usr/local/bin/home)
 export EDITOR=emacs
 alias emacs="emacs --title='$(/usr/local/bin/user-subu $(/usr/local/bin/user))'"
 export PS_FORMAT=user:15,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 alias pstree="pstree -lp"
+alias printenv="printenv | sort"
+alias cd='HOME=$HOME/user cd'
 
-# without -i bash clear PS1, just because
+# without -i bash clear PS1, just because, so we set PPS1, etc.
 # user $(pwd) instead of \w or it will prefix ~ which confuses dirtrack when the user is changed using su
 export PPS1='\n$(/usr/local/bin/Z)[$PROJECT]\n\u@\h§$(pwd)§\n> '
 export PPS2='>> '
@@ -22,11 +27,10 @@ export PS2="$PPS2"
   # export PATH=~/bin:~/projects/share:"$PATH"
 
 if [[ $HOME == "/home/Thomas/admin" ]]; then
-  export REPO_HOME="/home/Thomas/repo/user"
-  # need to change this to call initialize
-  export PATH="~/user/executable:$REPO_HOME/subu/executable:$PATH"
-
-  # No sound in subu shells without this. Seems it belongs somewhere other than .bashrc, but it does work here.
+  export REPO_HOME=/home/Thomas/repo/user
+  export PATH=~/user/cantari:"$REPO_HOME"/subu/user/cantari:"$PATH"
+   # No sound in subu shells without this:
+  # Seems it belongs somewhere other than .bashrc, but it does work here
   # /etc/pulse/default.pa did not work.
   pactl load-module module-native-protocol-tcp
 fi
@@ -36,14 +40,24 @@ if [[ $HOME != "/home/Thomas/admin" ]]; then
 fi
 
 if [[ $HOME == "/home/lfs" ]]; then
-  export REPO_HOME="/home/lfs/user/repo"
-  source "$REPO_HOME/resource/initialize"
+  export REPO_HOME=/home/lfs/user/repo
+  source "$REPO_HOME/resource/activate"
 fi
 
 if [[ $HOME == "/home/Thomas/repo" ]]; then
-  export REPO_HOME="$HOME/user"
-  source "$REPO_HOME/resource/initialize"
+  export REPO_HOME="$HOME"/user
+  source "$REPO_HOME/resource/activate"
 fi
+
+if [[ $HOME == "/home/Thomas/Lustucru" ]]; then
+  export REPO_HOME=/home/Thomas/repo/user
+  source "$REPO_HOME/resource/activate"
+fi
+
+
+#eval $(ssh-agent)
+#ssh-add ~/.ssh/key
+#export NO_AT_BRIDGE=1
 
 if [ -n "$INSIDE_EMACS" ]; then 
   echo Hello Emacs
